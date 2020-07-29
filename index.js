@@ -2,12 +2,15 @@ require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const twsRouter = require('./routes/tws');
 
 const app = express();
 
 app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
 app.use('/tws',twsRouter);
 
